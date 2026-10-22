@@ -230,6 +230,9 @@ footer a{margin-inline:6px}
 .payonly b{display:block;font-size:20px;color:var(--gold)}
 .payonly span{font-size:15px;opacity:.92}
 .payonly .btn{padding:12px 22px}
+.demo-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.demo .btn.yt{gap:10px}
+.yt-note{font-size:14px;color:var(--muted);margin-top:14px;max-width:34em}
 </style>
 </head>
 <body>
@@ -248,6 +251,7 @@ footer a{margin-inline:6px}
     <a href="#features">What it does</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">Questions</a>
+    <a href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener">Video tutorials</a>
     <a class="btn" id="navTrial" href="#download">Start 30-day free trial</a>
   </nav>
 </header>
@@ -294,7 +298,8 @@ footer a{margin-inline:6px}
   <div>
     <h2>See it in action</h2>
     <p class="sec-lead">Thirty seconds: invoices, taxes, payroll and withholding tax, all in one app.</p>
-    <a class="btn" href="#download">Download free</a>
+    <div class="demo-btns"><a class="btn" href="#download" style="margin-top:0">Download free</a><a class="btn ghost yt" href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener"><svg aria-hidden="true" width="22" height="16" viewBox="0 0 28 20" style="flex:none"><rect width="28" height="20" rx="5" fill="#FF0000"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg>Watch free video tutorials</a></div>
+    <p class="yt-note">Step-by-step videos for every screen: invoices, VAT, withholding tax, payroll, reports and more, on our YouTube channel.</p>
   </div>
 </div></section>
 
@@ -422,7 +427,7 @@ footer a{margin-inline:6px}
 
 <footer><div class="wrap">
   <span>&copy; <span id="yr"></span> 2A Prints. All rights reserved.</span>
-  <span><a href="#" id="termsLink">Terms</a><a href="#" id="privacyLink">Privacy</a><a href="#" id="refundLink">Refunds</a></span>
+  <span><a href="#" id="termsLink">Terms</a><a href="#" id="privacyLink">Privacy</a><a href="#" id="refundLink">Refunds</a><a href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener">YouTube</a></span>
 </div></footer>
 
 <script>
@@ -564,6 +569,7 @@ var CONFIG = {
   var cb = document.getElementById("contactBox"), parts = [];
   if(CONFIG.whatsapp) parts.push('<div><span>WhatsApp</span><br><code>'+CONFIG.whatsapp+'</code></div>');
   if(CONFIG.email) parts.push('<div><span>Email</span><br><code>'+CONFIG.email+'</code></div>');
+  parts.push('<div><span>YouTube</span><br><a href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener"><code>@2APrintsAccounting</code></a></div>');
   if(!parts.length){ cb.style.display="none"; document.getElementById("waBtn").style.display="none"; }
   else cb.innerHTML = parts.join("");
   if(CONFIG.termsUrl) set("termsLink",CONFIG.termsUrl); else document.getElementById("termsLink").removeAttribute("href");
