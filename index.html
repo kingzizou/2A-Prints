@@ -144,6 +144,7 @@ section{padding-block:96px}
 .calc .total{font-family:var(--display);font-size:clamp(48px,7vw,84px);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--gold);font-variant-numeric:lining-nums}
 .calc .sub{color:var(--on-deep-muted);font-size:15px;margin-top:8px}
 .calc .save{display:inline-block;margin-top:16px;background:var(--gold);color:var(--gold-ink);font-weight:700;font-size:14px;padding:6px 14px;border-radius:999px}
+.calc .save[hidden]{display:none}
 .calc .lines{margin:22px 0 24px;padding:0;list-style:none;font-size:15px;color:var(--on-deep-muted)}
 .calc .lines li{display:flex;justify-content:space-between;gap:12px;padding-block:8px;border-top:1px solid rgba(255,255,255,.14)}
 .calc .btn.ghost{color:#fff;border-color:rgba(255,255,255,.35)}
@@ -347,6 +348,7 @@ footer a{margin-inline:6px}
   <div class="calc">
     <div class="panel">
       <div class="row"><label for="calcUsers">Number of users</label><input id="calcUsers" type="number" inputmode="numeric" min="1" value="3"></div>
+      <div class="row"><label for="calcEmps">Employees on Payroll <span style="font-weight:500;color:var(--muted)">(optional, leave 0 if you do not need Payroll)</span></label><input id="calcEmps" type="number" inputmode="numeric" min="0" value="0"></div>
       <div class="row"><label for="calcMonths">Licence period</label><select id="calcMonths"></select></div>
       <ul class="inc"><li>All features</li><li>Free updates while your licence is valid</li><li>Support by WhatsApp and email</li></ul>
     </div>
@@ -362,7 +364,7 @@ footer a{margin-inline:6px}
   </div>
   <div class="rates" id="rates"></div>
   <div class="tablewrap"><table id="priceTable"></table></div>
-  <p class="note"><b>Payroll add-on (optional).</b> Add employee payroll to your accounting: pay runs with PAYE, SSF and RSF worked out, payslips, bank schedules and one-click posting to your ledger. It has its own licence key and costs extra. Message us for the price.</p>
+  <p class="note"><b>Payroll add-on (optional).</b> Add employee payroll to your accounting: pay runs with PAYE, SSF and RSF worked out, payslips, bank schedules and one-click posting to your ledger. It has its own licence key and is priced per employee, as shown in the calculator above. Payroll needs an active accounting licence with at least 1 user.</p>
   <p class="note">Prices are in Ghana cedis. Message us to confirm your price before you pay. One licence belongs to one company, and your key is emailed once your payment is confirmed.</p>
 </div></section>
 
@@ -449,7 +451,14 @@ var CONFIG = {
     userTiers: [ {from:1,to:1,pct:0}, {from:2,to:3,pct:10}, {from:4,to:10,pct:20}, {from:11,to:null,pct:30} ],
     periodDiscounts: [ {months:6,pct:5}, {months:12,pct:10}, {months:24,pct:20} ],
     periods: [3,6,12,18,24,36],
-    maxUsers: 50   /* above this, the page asks the customer to message you */
+    maxUsers: 50,   /* above this, the page asks the customer to message you */
+    /* PAYROLL add-on: priced per employee per month. Needs an active accounting licence (at least 1 user).
+       Same period discounts as accounting. */
+    payroll: {
+      perEmployeeMonth: 100,
+      tiers: [ {from:1,to:1,pct:0}, {from:2,to:3,pct:10}, {from:4,to:10,pct:20}, {from:11,to:null,pct:50} ],
+      maxEmployees: 500
+    }
   }
 };
 (function(){
@@ -465,39 +474,44 @@ var CONFIG = {
   function userMonthly(users){ var sum=0; for(var u=1;u<=users;u++){ sum += PR.perUserMonth*(100-tierPct(u))/100; } return sum; }
   function periodPct(m){ var p=0; PR.periodDiscounts.forEach(function(d){ if(m>=d.months && d.pct>p) p=d.pct; }); return p; }
   function periodLabel(m){ return m%12===0 ? (m/12)+(m===12?" year":" years") : m+" months"; }
-  function priceFor(users,m){ return userMonthly(users)*m*(100-periodPct(m))/100; }
-  function buyHref(users,m){
+  var PY = PR.payroll;
+  function payTierPct(e){ for(var i=0;i<PY.tiers.length;i++){ var t=PY.tiers[i]; if(e>=t.from && (t.to===null || e<=t.to)) return t.pct; } return 0; }
+  function payMonthly(emps){ var sum=0; for(var e=1;e<=emps;e++){ sum += PY.perEmployeeMonth*(100-payTierPct(e))/100; } return sum; }
+  function priceFor(users,m,emps){ return (userMonthly(users)+payMonthly(emps||0))*m*(100-periodPct(m))/100; }
+  function buyHref(users,m,emps){
     if(CONFIG.buyUrl) return CONFIG.buyUrl;
-    if(wa) return "https://wa.me/"+wa+"?text="+encodeURIComponent("Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+"\nLicence period: "+periodLabel(m)+"\nPrice on your website: "+money(priceFor(users,m)));
+    if(wa) return "https://wa.me/"+wa+"?text="+encodeURIComponent("Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+"\nPrice on your website: "+money(priceFor(users,m,emps)));
     return "#pay";
   }
-  function mailSet(users,m){
+  function mailSet(users,m,emps){
     var a=document.getElementById("calcMail"), note=document.getElementById("calcMailNote");
     if(!CONFIG.email){ a.style.display="none"; note.style.display="none"; return; }
     var over = users>PR.maxUsers;
-    var body = "Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+"\nLicence period: "+periodLabel(m)+(over?"":"\nPrice on your website: "+money(priceFor(users,m)));
+    var body = "Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+(over?"":"\nPrice on your website: "+money(priceFor(users,m,emps)));
     a.setAttribute("href","mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Licence request: 2A Prints Accounting")+"&body="+encodeURIComponent(body));
     note.innerHTML = "If the email button does not open, write to <b style=\"user-select:all\">"+CONFIG.email+"</b> with your company name, users and period.";
   }
   (function(){
-    var uEl=document.getElementById("calcUsers"), mEl=document.getElementById("calcMonths");
+    var uEl=document.getElementById("calcUsers"), eEl=document.getElementById("calcEmps"), mEl=document.getElementById("calcMonths");
     mEl.innerHTML = PR.periods.map(function(m){ var d=periodPct(m); return '<option value="'+m+'"'+(m===12?' selected':'')+'>'+periodLabel(m)+(d?' ('+d+'% off)':'')+'</option>'; }).join("");
     document.getElementById("priceLead").textContent = "Each user costs "+money(PR.perUserMonth)+" a month. Add more users or choose a longer licence and the price per user goes down.";
     function range(t){ return t.to===null ? "User "+t.from+" onward" : (t.from===t.to ? "User "+t.from : "Users "+t.from+" to "+t.to); }
     document.getElementById("rates").innerHTML =
       '<div><b>More users, lower price per user</b>'+PR.userTiers.map(function(t){ return range(t)+": "+(t.pct?t.pct+"% off":"full price"); }).join("<br>")+'</div>'+
+      '<div><b>Payroll add-on, per employee a month</b>'+PY.tiers.map(function(t){ return range(t).replace(/User/g,"Employee").replace(/Users/g,"Employees")+": "+money(PY.perEmployeeMonth*(100-t.pct)/100); }).join("<br>")+'</div>'+
       '<div><b>Longer licence, lower price</b>'+PR.periodDiscounts.map(function(d){ return periodLabel(d.months)+" or more: "+d.pct+"% off"; }).join("<br>")+'</div>';
     var ex=[1,3,5,10], exM=[6,12,24];
     document.getElementById("priceTable").innerHTML = '<thead><tr><th>Users</th>'+exM.map(function(m){return '<th>'+periodLabel(m)+'</th>';}).join("")+'</tr></thead><tbody>'+
       ex.map(function(u){ return '<tr><td>'+u+(u===1?' user':' users')+'</td>'+exM.map(function(m){return '<td>'+money(priceFor(u,m))+'</td>';}).join("")+'</tr>'; }).join("")+'</tbody>';
     function draw(){
-      var users = Math.floor(Number(uEl.value)); var m = Number(mEl.value);
+      var users = Math.floor(Number(uEl.value)); var emps = Math.max(0,Math.floor(Number(eEl.value))||0); var m = Number(mEl.value);
       var tot=document.getElementById("calcTotal"), mon=document.getElementById("calcMonthly"), sv=document.getElementById("calcSave"), ln=document.getElementById("calcLines"), btn=document.getElementById("calcBtn");
       if(!(users>=1)){ tot.textContent="\u2014"; mon.textContent="Enter at least 1 user."; sv.hidden=true; ln.innerHTML=""; btn.setAttribute("href","#pricing"); return; }
-      if(users>PR.maxUsers){ tot.textContent="Let\u2019s talk"; mon.textContent="For more than "+PR.maxUsers+" users, message us and we will quote you."; sv.hidden=true; ln.innerHTML=""; btn.setAttribute("href",buyHref(users,m)); mailSet(users,m); return; }
-      var total=priceFor(users,m), list=PR.perUserMonth*users*m, saved=list-total;
+      if(users>PR.maxUsers){ tot.textContent="Let\u2019s talk"; mon.textContent="For more than "+PR.maxUsers+" users, message us and we will quote you."; sv.hidden=true; ln.innerHTML=""; btn.setAttribute("href",buyHref(users,m,emps)); mailSet(users,m,emps); return; }
+      if(emps>PY.maxEmployees){ tot.textContent="Let\u2019s talk"; mon.textContent="For more than "+PY.maxEmployees+" employees, message us and we will quote you."; sv.hidden=true; ln.innerHTML=""; btn.setAttribute("href",buyHref(users,m,emps)); mailSet(users,m,emps); return; }
+      var total=priceFor(users,m,emps), list=(PR.perUserMonth*users+PY.perEmployeeMonth*emps)*m, saved=list-total;
       tot.textContent = money(total);
-      mon.textContent = money(total/m)+" a month for "+users+(users===1?" user":" users")+", for "+periodLabel(m);
+      mon.textContent = money(total/m)+" a month for "+users+(users===1?" user":" users")+(emps?" and "+emps+(emps===1?" employee":" employees")+" on Payroll":"")+", for "+periodLabel(m);
       sv.hidden = !(saved>=1); sv.textContent = "You save "+money(saved)+" against full price";
       var rows=[];
       PR.userTiers.forEach(function(t){
@@ -506,13 +520,19 @@ var CONFIG = {
         var n = last-t.from+1, unit = PR.perUserMonth*(100-t.pct)/100;
         rows.push('<li><span>'+(n===1?'User '+t.from:'Users '+t.from+' to '+last)+'</span><span>'+money(unit)+(n===1?'':' each')+' a month</span></li>');
       });
+      PY.tiers.forEach(function(t){
+        if(emps<t.from) return;
+        var last = t.to===null ? emps : Math.min(emps,t.to);
+        var n = last-t.from+1, unit = PY.perEmployeeMonth*(100-t.pct)/100;
+        rows.push('<li><span>Payroll: '+(n===1?'employee '+t.from:'employees '+t.from+' to '+last)+'</span><span>'+money(unit)+(n===1?'':' each')+' a month</span></li>');
+      });
       if(periodPct(m)) rows.push('<li><span>Licence of '+periodLabel(m)+'</span><span>'+periodPct(m)+'% off the total</span></li>');
       ln.innerHTML = rows.join("");
-      btn.setAttribute("href", buyHref(users,m));
-      mailSet(users,m);
+      btn.setAttribute("href", buyHref(users,m,emps));
+      mailSet(users,m,emps);
       if(btn.getAttribute("href").indexOf("http")===0){ btn.target="_blank"; btn.rel="noopener"; }
     }
-    uEl.addEventListener("input",draw); mEl.addEventListener("change",draw); draw();
+    uEl.addEventListener("input",draw); eEl.addEventListener("input",draw); mEl.addEventListener("change",draw); draw();
   })();
   var b = CONFIG.bank||{}, rows = [["Pay by",b.bankName],["Account name",b.accountName],["Mobile Money number",b.accountNumber],["Branch",b.branch]].filter(function(r){return r[1];});
   if(rows.length){
