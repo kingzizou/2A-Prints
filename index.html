@@ -220,6 +220,16 @@ footer a{margin-inline:6px}
   .tax .lev{margin-right:-18px;padding-right:18px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flash{animation:none}.btn{transition:none}}
+.demo{background:var(--mist)}
+.demo .wrap{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center;padding-block:64px}
+.demo video{display:block;width:min(320px,80vw);aspect-ratio:9/16;border-radius:22px;background:#06241B;box-shadow:0 18px 50px rgba(0,0,0,.28);border:3px solid var(--gold)}
+.demo h2{margin-top:0}
+.demo .btn{margin-top:8px}
+@media(max-width:760px){.demo .wrap{grid-template-columns:1fr;justify-items:center;text-align:center;gap:28px}}
+.payonly{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px;padding:18px 22px;border-radius:16px;background:var(--leaf);color:#fff;border-left:8px solid var(--gold);max-width:60em}
+.payonly b{display:block;font-size:20px;color:var(--gold)}
+.payonly span{font-size:15px;opacity:.92}
+.payonly .btn{padding:12px 22px}
 </style>
 </head>
 <body>
@@ -278,6 +288,15 @@ footer a{margin-inline:6px}
   <span>Made for Ghana</span>
   <ul><li>NHIL</li><li>GETFund</li><li>VAT</li><li>Withholding tax</li><li>PAYE</li><li>SSNIT</li><li>IFRS 18</li></ul>
 </div></div>
+
+<section class="demo" id="demo"><div class="wrap">
+  <video controls preload="none" playsinline poster="video-poster.jpg" aria-label="30-second tour of 2A Prints Accounting"><source src="2A-Prints-Accounting-ad.mp4" type="video/mp4"></video>
+  <div>
+    <h2>See it in action</h2>
+    <p class="sec-lead">Thirty seconds: invoices, taxes, payroll and withholding tax, all in one app.</p>
+    <a class="btn" href="#download">Download free</a>
+  </div>
+</div></section>
 
 <section id="features"><div class="wrap">
   <h2>Everything a small business books in a month</h2>
@@ -364,7 +383,8 @@ footer a{margin-inline:6px}
   </div>
   <div class="rates" id="rates"></div>
   <div class="tablewrap"><table id="priceTable"></table></div>
-  <p class="note"><b>Payroll add-on (optional).</b> Add employee payroll to your accounting: pay runs with PAYE, SSF and RSF worked out, payslips, bank schedules and one-click posting to your ledger. It has its own licence key and is priced per employee, as shown in the calculator above. Payroll is an add-on to your accounting. Posting payroll to your ledger needs an active accounting licence. Need Payroll only? Message us.</p>
+  <p class="note"><b>Payroll add-on (optional).</b> Add employee payroll to your accounting: pay runs with PAYE, SSF and RSF worked out, payslips, bank schedules and one-click posting to your ledger. It has its own licence key and is priced per employee, as shown in the calculator above. Payroll is an add-on to your accounting. Posting payroll to your ledger needs an active accounting licence.</p>
+  <div class="payonly"><div><b>Need Payroll only?</b><span>Tell us what you need and we will get back to you.</span></div><a class="btn" id="payOnlyBtn" href="#contact">Message us</a></div>
   <p class="note">Prices are in Ghana cedis. Message us to confirm your price before you pay. One licence belongs to one company, and your key is emailed once your payment is confirmed.</p>
 </div></section>
 
@@ -550,6 +570,9 @@ var CONFIG = {
   if(CONFIG.refundUrl) set("refundLink",CONFIG.refundUrl); else document.getElementById("refundLink").removeAttribute("href");
   if(CONFIG.privacyUrl) set("privacyLink",CONFIG.privacyUrl); else document.getElementById("privacyLink").removeAttribute("href");
 })();
+
+(function(){var b=document.getElementById("payOnlyBtn");var w=(CONFIG.whatsapp||"").replace(/[^0-9]/g,"");
+if(b&&w){b.href="https://wa.me/"+w+"?text="+encodeURIComponent("Hello, I would like Payroll only (without accounting). Please tell me more.");b.target="_blank";b.rel="noopener";}})();
 </script>
 </body>
 </html>
