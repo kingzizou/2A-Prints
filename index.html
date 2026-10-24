@@ -465,7 +465,7 @@ var CONFIG = {
     macArm:   "2A-Prints-Accounting-mac-arm64.zip",
     macIntel: "2A-Prints-Accounting-mac-x64.zip",
     linux:    "2A-Prints-Accounting.AppImage",
-    android:  "2A-Prints-Accounting.apk",
+    android:  "2A-Prints-Accounting.apk",  /* hosted next to this page (one-step download), not on the release */
     manual:   "2A-Prints-Accounting-User-Manual.pdf"  /* hosted next to this page, not on the release */,
     manualDoc:"2A-Prints-Accounting-User-Manual.docx"
   },
@@ -498,7 +498,7 @@ var CONFIG = {
 };
 (function(){
   function set(id,href){var e=document.getElementById(id); if(e&&href) e.setAttribute("href",href);}
-  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlAndroid",D.base+D.android); set("dlManual",D.manual); set("dlManualDoc",D.manualDoc);
+  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlAndroid",D.android); set("dlManual",D.manual); set("dlManualDoc",D.manualDoc);
   set("webBtn",CONFIG.webAppUrl); set("webBtn2",CONFIG.webAppUrl);
   ["webBtn","webBtn2"].forEach(function(id){var e=document.getElementById(id); if(e&&/^https?:/.test(e.getAttribute("href")||"")){e.target="_blank"; e.rel="noopener";}});
   document.getElementById("yr").textContent = new Date().getFullYear();
