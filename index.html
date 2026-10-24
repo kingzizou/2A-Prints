@@ -233,6 +233,7 @@ footer a{margin-inline:6px}
 .demo-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
 .demo .btn.yt{gap:10px}
 .yt-note{font-size:14px;color:var(--muted);margin-top:14px;max-width:34em}
+.where div.full{grid-column:1/-1}
 </style>
 </head>
 <body>
@@ -265,7 +266,7 @@ footer a{margin-inline:6px}
       <a class="btn" id="dlBtn" href="#download">Download 30-day free trial</a>
       <a class="btn ghost" id="webBtn" href="#">Open the web app</a>
     </div>
-    <p class="fine">Windows, Mac, Linux, and any phone browser. No card needed to start.</p>
+    <p class="fine">Windows, Mac, Linux, Android, and any phone browser. No card needed to start.</p>
   </div>
 
   <form class="paper" aria-label="Sample invoice you can change" onsubmit="return false">
@@ -345,6 +346,10 @@ footer a{margin-inline:6px}
     <div><h3>Assets, journals, reconciliation</h3><p>Asset register, manual journals with vouchers, and reconciliation against your bank statement.</p></div>
     <div><h3>Several companies, several users</h3><p>Run more than one business under one login, and give each person only the screens they need.</p></div>
     <div><h3>Export, print, share</h3><p>Every list exports to Excel or CSV and prints or saves as PDF.</p></div>
+    <div><h3>E-VAT ready invoices</h3><p>Time of supply, supply type, tax rates and the GRA clearance details with QR code on every invoice, plus a register that flags anything not cleared within 24 hours.</p></div>
+    <div><h3>Keeps working offline</h3><p>Lost the internet? Your books stay open to view, and Quick Sale keeps selling. Sales go up on their own when you are back online.</p></div>
+    <div><h3>Backups at closing time</h3><p>Set your working hours and the desktop app saves a backup when you close for the day, or whenever you choose, with an optional password.</p></div>
+    <div><h3>Android app</h3><p>The same books on your phone: raise and print invoices, share them on WhatsApp, and sell from the till.</p></div>
   </div>
 </div></section>
 
@@ -355,13 +360,15 @@ footer a{margin-inline:6px}
     <div><b>Windows</b><span>Installer with automatic updates</span><a class="btn" id="dlWin" href="#download">Download for Windows</a></div>
     <div><b>Mac</b><span>Choose the download for your Mac</span><a class="btn" id="dlMacArm" href="#download">Apple chip (M1 or newer)</a><a class="btn ghost" id="dlMacIntel" href="#download">Intel Mac</a><small>Not sure? Apple menu, then About This Mac.</small></div>
     <div><b>Linux</b><span>AppImage, nothing to install</span><a class="btn" id="dlLinux" href="#download">Download for Linux</a></div>
-    <div><b>Phone</b><span>Open the web app and add it to your home screen</span><a class="btn ghost" id="webBtn2" href="#download">Open the web app</a></div>
-    <div><b>User manual</b><span>Step-by-step guide with screenshots, from subscribing to reports</span><a class="btn" id="dlManual" href="#download">Download manual (PDF)</a><a class="btn ghost" id="dlManualDoc" href="#download">Word document</a></div>
+    <div><b>Android</b><span>The app for Android phones and tablets, with printing, sharing and offline sales</span><a class="btn" id="dlAndroid" href="#download">Download for Android</a></div>
+    <div><b>iPhone and other phones</b><span>Open the web app and add it to your home screen</span><a class="btn ghost" id="webBtn2" href="#download">Open the web app</a></div>
+    <div class="full"><b>User manual</b><span>Step-by-step guide with screenshots, from subscribing to reports</span><a class="btn" id="dlManual" href="#download">Download manual (PDF)</a><a class="btn ghost" id="dlManualDoc" href="#download">Word document</a></div>
   </div>
   <div class="install">
     <div><b>Windows</b>Open the file you downloaded. If Windows says it protected your PC, choose More info, then Run anyway.</div>
     <div><b>Mac</b>Open the zip, then right-click the app and choose Open the first time. Confirm when asked.</div>
     <div><b>Linux</b>Right-click the file, open Properties and allow running it as a program, then double-click it.</div>
+    <div><b>Android</b>Open the downloaded file. Allow installing from your browser when asked, then tap Install. The app offers new versions itself.</div>
   </div>
   <p class="note">New installs start on a free 30-day trial, with all features. The app updates itself when an update is out.</p>
 </div></section>
@@ -411,6 +418,8 @@ footer a{margin-inline:6px}
     <details><summary>Is my business data kept separate from other companies?</summary><p>Yes. Each company's records are stored separately and only people you invite can open them.</p></details>
     <details><summary>Does it handle NHIL, GETFund, VAT and withholding tax?</summary><p>Yes. Rates are set once in the admin area and applied to sales, purchases and expenses. Withholding tax follows the Ghana rules on supplier payments, cash purchases and cash expenses, and the tax summary reports VAT, NHIL and GETFund.</p></details>
     <details><summary>Windows says it protected my PC. Is the app safe?</summary><p>Windows shows this notice for any new program that has not built up a download history yet. Choose More info, then Run anyway. Your files are not touched, and your company data is kept in the cloud under your own login.</p></details>
+    <details><summary>Is there an Android app?</summary><p>Yes. Download it above and install it on your phone or tablet. It opens the same company books as your computer, prints and shares invoices, and offers new versions by itself. On an iPhone, open the web app and add it to your home screen.</p></details>
+    <details><summary>What happens if the internet goes off?</summary><p>You can still open your records and keep selling with Quick Sale. Those sales are kept safely on the device and sent to the cloud as soon as the connection is back. How long offline selling is allowed is set by your administrator.</p></details>
     <details><summary>Can I add more people later?</summary><p>Yes. Ask us to add users and you pay only the difference for the time left on your licence. Each person gets a role that decides which screens they can use.</p></details>
     <details><summary>Can I move over from Excel?</summary><p>Yes. Add your customers, suppliers, products and opening balances, and carry on from there. Ask us if you want help setting up.</p></details>
   </div>
@@ -456,6 +465,7 @@ var CONFIG = {
     macArm:   "2A-Prints-Accounting-mac-arm64.zip",
     macIntel: "2A-Prints-Accounting-mac-x64.zip",
     linux:    "2A-Prints-Accounting.AppImage",
+    android:  "2A-Prints-Accounting.apk",
     manual:   "2A-Prints-Accounting-User-Manual.pdf"  /* hosted next to this page, not on the release */,
     manualDoc:"2A-Prints-Accounting-User-Manual.docx"
   },
@@ -488,7 +498,7 @@ var CONFIG = {
 };
 (function(){
   function set(id,href){var e=document.getElementById(id); if(e&&href) e.setAttribute("href",href);}
-  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlManual",D.manual); set("dlManualDoc",D.manualDoc);
+  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlAndroid",D.base+D.android); set("dlManual",D.manual); set("dlManualDoc",D.manualDoc);
   set("webBtn",CONFIG.webAppUrl); set("webBtn2",CONFIG.webAppUrl);
   ["webBtn","webBtn2"].forEach(function(id){var e=document.getElementById(id); if(e&&/^https?:/.test(e.getAttribute("href")||"")){e.target="_blank"; e.rel="noopener";}});
   document.getElementById("yr").textContent = new Date().getFullYear();
