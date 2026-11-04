@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2A Prints Accounting</title>
+<title>2A FlowBooks: accounting for Ghanaian businesses</title>
 <meta name="description" content="Accounting software for Ghanaian businesses. NHIL, GETFund, VAT and withholding tax worked out and posted the way GRA expects. 30-day free trial.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -234,19 +234,29 @@ footer a{margin-inline:6px}
 .demo .btn.yt{gap:10px}
 .yt-note{font-size:14px;color:var(--muted);margin-top:14px;max-width:34em}
 .where div.full{grid-column:1/-1}
+/* 2.3.2: slogan above the headline, new-name note, Ratio Analysis sample */
+.eyebrow{color:var(--gold);font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.renamed{background:var(--deep-2);color:var(--on-deep-muted);font-size:14px;text-align:center;padding:9px 18px}
+.renamed b{color:#fff}
+.ratios{list-style:none;margin:auto 0 0;padding:14px 0 0;display:grid;gap:8px;font-size:15px}
+.ratios li{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:baseline;padding:8px 12px;border-radius:10px;background:var(--mist)}
+.ratios li span{color:var(--muted);font-size:14px}
+.ratios .up{color:var(--leaf);font-weight:700}
+.ratios .down{color:var(--red);font-weight:700}
 </style>
 </head>
 <body>
 
+<div class="renamed"><b>2A Prints Accounting is now 2A FlowBooks.</b> Same app, same company books and logins. Installed copies update themselves.</div>
+
 <div class="hero">
 <div class="wrap">
 <header>
-  <a class="brand" href="#top" aria-label="2A Prints Accounting">
-    <svg viewBox="40 40 432 400" aria-hidden="true">
-      <path d="M256 70 L84 372 L428 372 Z" fill="#F5B71A" stroke="#F5B71A" stroke-width="64" stroke-linejoin="round"/>
-      <path d="M236 408 C 232 330 238 290 252 252 L 270 252 C 262 292 262 340 280 408 Z" fill="#06241B"/>
-      <path d="M261 150 L 296 252 L 226 252 Z" fill="#06241B" stroke="#06241B" stroke-width="10" stroke-linejoin="round"/></svg>
-    <b>2A Prints Accounting</b>
+  <a class="brand" href="#top" aria-label="2A FlowBooks">
+    <!-- 2A FlowBooks gold mark (2A-FlowBooks-mark-gold.svg, unchanged) -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true"><defs><linearGradient id="gm" x1="60" y1="0" x2="460" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFD25A"/><stop offset=".55" stop-color="#F5B71A"/><stop offset="1" stop-color="#E39F0A"/></linearGradient></defs>
+      <path d="M256 70 L84 372 L428 372 Z" fill="url(#gm)" stroke="url(#gm)" stroke-width="64" stroke-linejoin="round"/><mask id="tri" maskUnits="userSpaceOnUse" x="-50" y="-50" width="612" height="612"><path d="M256 70 L84 372 L428 372 Z" fill="#fff" stroke="#fff" stroke-width="64" stroke-linejoin="round"/></mask><g mask="url(#tri)" fill="#06241B"><path d="M236 408 C 232 330 238 290 252 252 L 270 252 C 262 292 262 340 280 408 Z"/><path d="M261 150 L 296 252 L 226 252 Z" stroke="#06241B" stroke-width="10" stroke-linejoin="round"/></g></svg>
+    <b>2A FlowBooks</b>
   </a>
   <nav>
     <a href="#features">What it does</a>
@@ -260,6 +270,7 @@ footer a{margin-inline:6px}
 <main id="top">
 <div class="herogrid">
   <div>
+    <p class="eyebrow">Think Accounting, Think 2A FlowBooks</p>
     <h1>Books that already know your taxes.</h1>
     <p class="lead">Invoices, stock, payments and expenses in one place. NHIL, GETFund, VAT and withholding tax are worked out and posted the way GRA expects. Use it on your computer or your phone.</p>
     <div class="cta-row">
@@ -295,7 +306,7 @@ footer a{margin-inline:6px}
 </div></div>
 
 <section class="demo" id="demo"><div class="wrap">
-  <video controls preload="none" playsinline poster="video-poster.jpg" aria-label="30-second tour of 2A Prints Accounting"><source src="2A-Prints-Accounting-ad.mp4" type="video/mp4"></video>
+  <video controls preload="none" playsinline poster="video-poster.jpg" aria-label="30-second tour of 2A FlowBooks"><source src="2A-Prints-Accounting-ad.mp4" type="video/mp4"></video>
   <div>
     <h2>See it in action</h2>
     <p class="sec-lead">Thirty seconds: invoices, taxes, payroll and withholding tax, all in one app.</p>
@@ -311,6 +322,20 @@ footer a{margin-inline:6px}
   <div class="bento">
     <div class="card wide">
       <span class="new">New</span>
+      <h3>Ratio Analysis, in plain words</h3>
+      <p>Pick a month or a year and see how the business is really doing: profit margins, returns, liquidity, debtor and creditor days, stock turnover and gearing, next to the period before. Each ratio says what it means, whether it got better, and whether it looks healthy.</p>
+      <ul class="ratios" aria-label="Sample ratios">
+        <li><b>Gross profit margin</b><span>was 55.6%</span><b class="up">&#9650; 64.3%</b></li>
+        <li><b>Debtor days</b><span>was 41 days</span><b class="up">&#9660; 28 days</b></li>
+        <li><b>Expense-to-sales</b><span>was 15.2%</span><b class="down">&#9650; 17.9%</b></li>
+      </ul>
+    </div>
+    <div class="card dark">
+      <span class="new">New</span>
+      <h3>Jobs that keep customers posted</h3>
+      <p>Track each job through its stages, from Received to Delivered. At the stages you choose, the customer message is ready to send on WhatsApp or email, and every message is noted on the job.</p>
+    </div>
+    <div class="card wide">
       <h3>Withholding tax that follows the Ghana rules</h3>
       <p>Pick what each supplier supplies and the program does the rest: 3% on goods, 5% on works and 7.5% on services once a supplier passes GHS 2,000 in the year, and 20% for non-residents. It is worked out before VAT, on payments and on cash purchases.</p>
       <div class="meter" role="img" aria-label="Three payments of 1,000, 900 and 900 to one services supplier. The third passes the 2,000 threshold, so 7.5% of 2,800 is withheld.">
@@ -319,7 +344,7 @@ footer a{margin-inline:6px}
         <div class="calc-line">The third payment takes the year to &cent;2,800. Tax due: 7.5% of 2,800 = &cent;210.</div>
       </div>
     </div>
-    <div class="card dark">
+    <div class="card">
       <h3>Payroll and HR</h3>
       <p>PAYE and SSNIT, payslips, leave, loans, department-head approvals and employee import. An add-on with its own licence.</p>
     </div>
@@ -350,6 +375,9 @@ footer a{margin-inline:6px}
     <div><h3>Keeps working offline</h3><p>Lost the internet? Your books stay open to view, and Quick Sale keeps selling. Sales go up on their own when you are back online.</p></div>
     <div><h3>Backups at closing time</h3><p>Set your working hours and the desktop app saves a backup when you close for the day, or whenever you choose, with an optional password.</p></div>
     <div><h3>Android app</h3><p>The same books on your phone: raise and print invoices, share them on WhatsApp, and sell from the till.</p></div>
+    <div><h3>Set up for your kind of business</h3><p>Printing, shop, services, restaurant, pharmacy, construction, NGO or church, or your own type. Switch off what you don't use, and the menus follow.</p></div>
+    <div><h3>A dashboard at a glance</h3><p>Sales today, jobs due, profit by business unit, the next VAT return and quick actions. Each user arranges their own cards.</p></div>
+    <div><h3>Branches and business units</h3><p>Run several branches with their own stock locations, and see the profit of each line of business, with overheads shared out as you choose.</p></div>
   </div>
 </div></section>
 
@@ -359,15 +387,15 @@ footer a{margin-inline:6px}
   <div class="where">
     <div><b>Windows</b><span>Installer with automatic updates</span><a class="btn" id="dlWin" href="#download">Download for Windows</a></div>
     <div><b>Mac</b><span>Choose the download for your Mac</span><a class="btn" id="dlMacArm" href="#download">Apple chip (M1 or newer)</a><a class="btn ghost" id="dlMacIntel" href="#download">Intel Mac</a><small>Not sure? Apple menu, then About This Mac.</small></div>
-    <div><b>Linux</b><span>AppImage, nothing to install</span><a class="btn" id="dlLinux" href="#download">Download for Linux</a></div>
+    <div><b>Linux</b><span>Installs like any other app</span><a class="btn" id="dlLinuxDeb" href="#download">Ubuntu, Debian, Mint (.deb)</a><a class="btn" id="dlLinuxRpm" href="#download">Fedora (.rpm)</a><a class="btn ghost" id="dlLinux" href="#download">AppImage</a></div>
     <div><b>Android</b><span>The app for Android phones and tablets, with printing, sharing and offline sales</span><a class="btn" id="dlAndroid" href="#download">Download for Android</a></div>
     <div><b>iPhone and other phones</b><span>Open the web app and add it to your home screen</span><a class="btn ghost" id="webBtn2" href="#download">Open the web app</a></div>
-    <div class="full"><b>User manual</b><span>Step-by-step guide with screenshots, from subscribing to reports</span><a class="btn" id="dlManual" href="#download">Download manual (PDF)</a><a class="btn ghost" id="dlManualDoc" href="#download">Word document</a></div>
+    <div class="full"><b>User manual</b><span>Step-by-step guide with screenshots, from subscribing to reports</span><a class="btn" id="dlManual" href="#download">Download manual (PDF)</a></div>
   </div>
   <div class="install">
     <div><b>Windows</b>Open the file you downloaded. If Windows says it protected your PC, choose More info, then Run anyway.</div>
-    <div><b>Mac</b>Open the zip and drag 2A Prints Accounting into Applications. Open it once; if the Mac says it can't check the app, go to System Settings, Privacy &amp; Security, and click Open Anyway. You only do this the first time.</div>
-    <div><b>Linux</b>Right-click the file, open Properties and allow running it as a program, then double-click it.</div>
+    <div><b>Mac</b>Open the zip and drag 2A FlowBooks into Applications (if you have the older "2A Prints Accounting", delete it). Open it once; if the Mac says it can't check the app, go to System Settings, Privacy &amp; Security, and click Open Anyway. You only do this the first time.</div>
+    <div><b>Linux</b>Double-click the .deb or .rpm to open it in your Software app, then click Install. Or in a terminal: <code>sudo apt install ./file.deb</code> (Ubuntu, Debian, Mint) or <code>sudo dnf install ./file.rpm</code> (Fedora). The AppImage needs no install: right-click it, allow running it as a program, then double-click it. Never open it with Disks.</div>
     <div><b>Android</b>If Chrome warns that the file can be harmful, tap Download anyway. Open the downloaded file and allow installing from your browser when asked, then tap Install. If Play Protect says it doesn't recognise the app, tap More details, then Install anyway. The app offers new versions itself.</div>
   </div>
   <p class="note">New installs start on a free 30-day trial, with all features. The app updates itself when an update is out.</p>
@@ -418,7 +446,8 @@ footer a{margin-inline:6px}
     <details><summary>Is my business data kept separate from other companies?</summary><p>Yes. Each company's records are stored separately and only people you invite can open them.</p></details>
     <details><summary>Does it handle NHIL, GETFund, VAT and withholding tax?</summary><p>Yes. Rates are set once in the admin area and applied to sales, purchases and expenses. Withholding tax follows the Ghana rules on supplier payments, cash purchases and cash expenses, and the tax summary reports VAT, NHIL and GETFund.</p></details>
     <details><summary>Windows says it protected my PC. Is the app safe?</summary><p>Windows shows this notice for any new program that has not built up a download history yet. Choose More info, then Run anyway. Your files are not touched, and your company data is kept in the cloud under your own login.</p></details>
-    <details><summary>My Mac says the app is damaged or can't be opened. What do I do?</summary><p>Your Mac shows this for apps that are not from the App Store. Click Cancel (not Move to Trash). Go to System Settings, Privacy &amp; Security, scroll down and click Open Anyway, then confirm. If it still says "damaged", open Terminal and run: <code>xattr -cr "/Applications/2A Prints Accounting.app"</code>, then open the app again. If you have an older copy, delete it first so there is only one "2A Prints Accounting" in Applications.</p></details>
+    <details><summary>My Mac says the app is damaged or can't be opened. What do I do?</summary><p>Your Mac shows this for apps that are not from the App Store. Click Cancel (not Move to Trash). Go to System Settings, Privacy &amp; Security, scroll down and click Open Anyway, then confirm. If it still says "damaged", open Terminal and run: <code>xattr -cr "/Applications/2A FlowBooks.app"</code>, then open the app again. If you still have the older "2A Prints Accounting" app, delete it so there is only one copy in Applications.</p></details>
+    <details><summary>2A Prints Accounting is now 2A FlowBooks. Do I need to do anything?</summary><p>No. It is the same app with a new name. On Windows, Linux and Android it updates itself and keeps your logins, settings and company books. On a Mac, download the new version, drag it into Applications and delete the old "2A Prints Accounting" app. Your licence key carries on as before.</p></details>
     <details><summary>Why does my phone warn me about the Android app?</summary><p>Chrome and Google Play Protect show these warnings for any app that is installed from a website instead of the Play Store. They don't mean anything is wrong with the app. Tap Download anyway, then More details and Install anyway. If the download seems stuck at 100%, open your phone's Chrome app, tap the three dots, then Downloads, and confirm it there.</p></details>
     <details><summary>Is there an Android app?</summary><p>Yes. Download it above and install it on your phone or tablet. It opens the same company books as your computer, prints and shares invoices, and offers new versions by itself. On an iPhone, open the web app and add it to your home screen.</p></details>
     <details><summary>What happens if the internet goes off?</summary><p>You can still open your records and keep selling with Quick Sale. Those sales are kept safely on the device and sent to the cloud as soon as the connection is back. How long offline selling is allowed is set by your administrator.</p></details>
@@ -463,13 +492,14 @@ var CONFIG = {
   /* Direct downloads: always the newest release. The file names must match the files attached to each release exactly. */
   downloads: {
     base:     "https://github.com/kingzizou/2A-Accounting-releases/releases/latest/download/",
-    win:      "2A-Prints-Accounting-Setup.exe",
-    macArm:   "2A-Prints-Accounting-mac-arm64.zip",
-    macIntel: "2A-Prints-Accounting-mac-x64.zip",
-    linux:    "2A-Prints-Accounting.AppImage",
-    android:  "2A-Prints-Accounting.apk",  /* hosted next to this page (one-step download), not on the release */
-    manual:   "2A-Prints-Accounting-User-Manual.pdf"  /* hosted next to this page, not on the release */,
-    manualDoc:"2A-Prints-Accounting-User-Manual.docx"
+    win:      "2A-FlowBooks-Setup.exe",
+    macArm:   "2A-FlowBooks-mac-arm64.zip",
+    macIntel: "2A-FlowBooks-mac-x64.zip",
+    linux:    "2A-FlowBooks-linux-x64.AppImage",
+    linuxDeb: "2A-FlowBooks-linux-amd64.deb",
+    linuxRpm: "2A-FlowBooks-linux-x86_64.rpm",
+    android:  "2A-FlowBooks.apk",  /* hosted next to this page (one-step download), not on the release */
+    manual:   "2A-Prints-Accounting-User-Manual.pdf"  /* hosted next to this page, not on the release (rename when the manual is renamed) */
   },
   webAppUrl:   "https://kingzizou.github.io/2A-Accounting-releases/",
   buyUrl:      "",   /* optional online payment link; leave empty to use bank transfer + WhatsApp */
@@ -500,7 +530,7 @@ var CONFIG = {
 };
 (function(){
   function set(id,href){var e=document.getElementById(id); if(e&&href) e.setAttribute("href",href);}
-  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlAndroid",D.android); set("dlManual",D.manual); set("dlManualDoc",D.manualDoc);
+  var D=CONFIG.downloads; set("dlWin",D.base+D.win); set("dlMacArm",D.base+D.macArm); set("dlMacIntel",D.base+D.macIntel); set("dlLinux",D.base+D.linux); set("dlLinuxDeb",D.base+D.linuxDeb); set("dlLinuxRpm",D.base+D.linuxRpm); set("dlAndroid",D.android); set("dlManual",D.manual);
   set("webBtn",CONFIG.webAppUrl); set("webBtn2",CONFIG.webAppUrl);
   ["webBtn","webBtn2"].forEach(function(id){var e=document.getElementById(id); if(e&&/^https?:/.test(e.getAttribute("href")||"")){e.target="_blank"; e.rel="noopener";}});
   document.getElementById("yr").textContent = new Date().getFullYear();
@@ -517,15 +547,15 @@ var CONFIG = {
   function priceFor(users,m,emps){ return (userMonthly(users)+payMonthly(emps||0))*m*(100-periodPct(m))/100; }
   function buyHref(users,m,emps){
     if(CONFIG.buyUrl) return CONFIG.buyUrl;
-    if(wa) return "https://wa.me/"+wa+"?text="+encodeURIComponent("Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+"\nPrice on your website: "+money(priceFor(users,m,emps)));
+    if(wa) return "https://wa.me/"+wa+"?text="+encodeURIComponent("Hello, I would like 2A FlowBooks.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+"\nPrice on your website: "+money(priceFor(users,m,emps)));
     return "#pay";
   }
   function mailSet(users,m,emps){
     var a=document.getElementById("calcMail"), note=document.getElementById("calcMailNote");
     if(!CONFIG.email){ a.style.display="none"; note.style.display="none"; return; }
     var over = users>PR.maxUsers;
-    var body = "Hello, I would like 2A Prints Accounting.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+(over?"":"\nPrice on your website: "+money(priceFor(users,m,emps)));
-    a.setAttribute("href","mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Licence request: 2A Prints Accounting")+"&body="+encodeURIComponent(body));
+    var body = "Hello, I would like 2A FlowBooks.\nCompany name: \nNumber of users: "+users+(emps?"\nEmployees on Payroll: "+emps:"")+"\nLicence period: "+periodLabel(m)+(over?"":"\nPrice on your website: "+money(priceFor(users,m,emps)));
+    a.setAttribute("href","mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Licence request: 2A FlowBooks")+"&body="+encodeURIComponent(body));
     note.innerHTML = "If the email button does not open, write to <b style=\"user-select:all\">"+CONFIG.email+"</b> with your company name, users and period.";
   }
   (function(){
