@@ -243,6 +243,20 @@ footer a{margin-inline:6px}
 .ratios li span{color:var(--muted);font-size:14px}
 .ratios .up{color:var(--leaf);font-weight:700}
 .ratios .down{color:var(--red);font-weight:700}
+/* 2A School Manager promotion (its own navy and gold, so it reads as a sister product) */
+.sm{background:#0E1733;color:#EEF1FA;padding-block:0}
+.sm .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;padding-block:64px;background:repeating-linear-gradient(180deg,transparent 0 47px,rgba(255,255,255,.045) 47px 48px)}
+.sm svg{width:92px;height:100px}
+.sm .kicker{color:#E0A526;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.sm h2{color:#fff;font-size:clamp(28px,3.6vw,44px)}
+.sm p{color:#A6B1CF;margin-top:12px;max-width:40em}
+.sm ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:16px 0 0;padding:0}
+.sm li{border:1px solid rgba(224,165,38,.55);border-radius:999px;padding:4px 12px;font-size:14px;font-weight:600}
+.sm li[lang="ar"]{font-family:"Noto Naskh Arabic","Segoe UI",serif}
+.sm .btn{background:#E0A526;border-color:#E0A526;color:#2A1C00;white-space:nowrap}
+.sm .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.35);margin-top:10px}
+.sm .go{display:flex;flex-direction:column}
+@media (max-width:980px){.sm svg{width:60px;height:66px}.sm .wrap{grid-template-columns:1fr;gap:24px}.sm .go{flex-direction:row;flex-wrap:wrap;gap:10px}.sm .btn.ghost{margin-top:0}}
 </style>
 </head>
 <body>
@@ -440,6 +454,18 @@ footer a{margin-inline:6px}
   <div class="bank" id="bankBox" hidden></div>
 </div></section>
 
+<section class="sm" id="school-manager" aria-label="Also from 2A: 2A School Manager"><div class="wrap">
+  <!-- 2A School Manager mark (logo A, Rising Book), white version for navy -->
+  <svg viewBox="18 12 164 178" aria-hidden="true"><path d="M100 16 L174 140 L26 140 Z" fill="#FFFFFF"/><path d="M100 50 L126 84 H111 V126 H89 V84 H74 Z" fill="#1B2A5B"/><path d="M100 152 C80 140 52 138 22 144 V178 C52 172 80 174 100 186 Z" fill="#E0A526"/><path d="M100 152 C120 140 148 138 178 144 V178 C148 172 120 174 100 186 Z" fill="#C2870F"/></svg>
+  <div>
+    <p class="kicker">Also from 2A</p>
+    <h2>Run a school? Meet 2A School Manager</h2>
+    <p>Students, marks and report cards, fees with Mobile Money, attendance, Qur'an, library, staff and payroll, and a parent portal on every parent's phone. In English, in Arabic, or both. A separate app from FlowBooks, with its own 30-day free trial.</p>
+    <ul><li>Report cards</li><li>Fees &amp; MoMo</li><li>Parent portal</li><li>Qur'an &amp; Hifz</li><li lang="ar" dir="rtl">عربي</li></ul>
+  </div>
+  <div class="go"><a class="btn" href="https://2aschoolmanager.github.io/" target="_blank" rel="noopener">See 2A School Manager</a><a class="btn ghost" href="https://2aschoolmanager.github.io/#download" target="_blank" rel="noopener">Free trial</a></div>
+</div></section>
+
 <section id="faq"><div class="wrap">
   <h2>Before you buy</h2>
   <div class="faq">
@@ -469,7 +495,7 @@ footer a{margin-inline:6px}
 
 <footer><div class="wrap">
   <span>&copy; <span id="yr"></span> 2A Prints. All rights reserved.</span>
-  <span><a href="#" id="termsLink">Terms</a><a href="#" id="privacyLink">Privacy</a><a href="#" id="refundLink">Refunds</a><a href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener">YouTube</a></span>
+  <span><a href="#" id="termsLink">Terms</a><a href="#" id="privacyLink">Privacy</a><a href="#" id="refundLink">Refunds</a><a href="https://www.youtube.com/@2APrintsAccounting" target="_blank" rel="noopener">YouTube</a><a href="https://2aschoolmanager.github.io/" target="_blank" rel="noopener">2A School Manager</a></span>
 </div></footer>
 
 <script>
